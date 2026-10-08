@@ -1,69 +1,315 @@
 <style>
-    .search-btn {
-        background-color: #fe242d;
-        color: #fff;
-        border-radius: 25px;
-        padding: 0 1rem 0 1rem;
-        /* chatgpt */
+    /* =========================
+       NAVBAR
+    ========================= */
+    
+    .wl-navbar {
+        min-height: 72px;
+        background: rgba(255, 255, 255, 0.94) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        padding: 0.7rem 1.2rem;
+        z-index: 1000;
+    }
+    /* Logo */
+    
+    .wl-navbar .navbar-brand {
+        font-size: 1.8rem;
+        color: #fe242d;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
     }
     
-    .search-btn:hover {
-        background-color: #fe242d;
-        color: #fff;
+    .wl-navbar .navbar-brand:hover {
+        background: #fff0f1;
+        transform: rotate(-8deg) scale(1.08);
+    }
+    /* Navigation links */
+    
+    .wl-navbar .nav-link {
+        position: relative;
+        color: #333 !important;
+        font-weight: 500;
+        font-size: 0.96rem;
+        padding: 0.55rem 0.75rem !important;
+        transition: all 0.3s ease;
     }
     
-    .search-btn i {
-        display: inline;
-        margin-right: 0.5rem;
+    .wl-navbar .nav-link:hover {
+        color: #fe242d !important;
+    }
+    /* Underline animation */
+    
+    .wl-navbar .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        width: 0;
+        height: 2px;
+        background: #fe242d;
+        border-radius: 10px;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+    }
+    
+    .wl-navbar .nav-link:hover::after {
+        width: 70%;
+    }
+    /* =========================
+       SEARCH
+    ========================= */
+    
+    .wl-search {
+        display: flex;
+        align-items: center;
+        background: #f6f6f6;
+        border: 1px solid #e8e8e8;
+        border-radius: 30px;
+        padding: 4px;
+        transition: all 0.3s ease;
+    }
+    
+    .wl-search:focus-within {
+        background: #fff;
+        border-color: #fe242d;
+        box-shadow: 0 0 0 4px rgba(254, 36, 45, 0.10);
     }
     
     .search-inp {
+        width: 240px;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
         border-radius: 25px;
-        padding: 0.5rem 3rem 0.5rem 3rem;
-        font-size: 1rem;
+        padding: 0.55rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .search-inp::placeholder {
+        color: #999;
+    }
+    
+    .search-btn {
+        border: none;
+        background: #fe242d;
+        color: #fff;
+        border-radius: 25px;
+        padding: 0.55rem 1.15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+    
+    .search-btn:hover {
+        background: #d91e26;
+        color: #fff;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(254, 36, 45, 0.25);
+    }
+    
+    .search-btn i {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    /* =========================
+       RIGHT SIDE
+    ========================= */
+    
+    .wl-right-nav {
+        align-items: center;
+    }
+    
+    .wl-home-link {
+        white-space: nowrap;
+    }
+    /* Signup */
+    
+    .wl-signup {
+        background: #fe242d;
+        color: white !important;
+        border-radius: 22px;
+        padding: 0.45rem 1rem !important;
+    }
+    
+    .wl-signup:hover {
+        background: #d91e26;
+        color: white !important;
+        transform: translateY(-1px);
+    }
+    
+    .wl-signup::after {
+        display: none;
+    }
+    /* Login */
+    
+    .wl-login {
+        border: 1px solid #ddd;
+        border-radius: 22px;
+        padding: 0.45rem 1rem !important;
+    }
+    
+    .wl-login:hover {
+        border-color: #fe242d;
+        background: #fff5f5;
+    }
+    
+    .wl-login::after {
+        display: none;
+    }
+    /* Logout */
+    
+    .wl-logout {
+        color: #fe242d !important;
+        border: 1px solid #fe242d;
+        border-radius: 22px;
+        padding: 0.45rem 1rem !important;
+    }
+    
+    .wl-logout:hover {
+        background: #fe242d;
+        color: white !important;
+    }
+    
+    .wl-logout::after {
+        display: none;
+    }
+    /* =========================
+       MOBILE
+    ========================= */
+    
+    @media (max-width: 991px) {
+        .wl-navbar {
+            padding: 0.6rem 0.8rem;
+        }
+        .wl-search {
+            margin: 0.8rem 0;
+            width: 100%;
+        }
+        .search-inp {
+            width: 100%;
+        }
+        .wl-right-nav {
+            margin-top: 0.5rem;
+            gap: 0.3rem !important;
+            align-items: stretch;
+        }
+        .wl-right-nav .nav-link {
+            text-align: center;
+        }
+    }
+    
+    @media (max-width: 575px) {
+        .wl-navbar .navbar-brand {
+            font-size: 1.6rem;
+        }
+        .search-btn {
+            padding: 0.55rem 0.9rem;
+        }
+        .search-btn i {
+            display: inline;
+        }
+        .wl-right-nav {
+            flex-direction: column !important;
+        }
+        .wl-right-nav .nav-link {
+            width: 100%;
+        }
     }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top wl-navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i>
-</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
-      <span class="navbar-toggler-icon"></span>
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-solid fa-compass"></i>
+        </a>
+
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon"></span>
+
     </button>
+
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
+            <!-- Left Navigation -->
             <div class="navbar-nav">
-                <a class="nav-link" href="/listings">Explore</a>
 
-
+                <a class="nav-link" href="/listings">
+                Explore
+            </a>
 
             </div>
-            <!-- search bar -->
-            <div class="navbar-nav ms-auto ">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 search-inp" type="search" placeholder="Search" />
+
+
+            <!-- Search Bar -->
+            <div class="navbar-nav mx-auto">
+
+                <form class="d-flex wl-search" role="search">
+
+                    <input class="form-control search-inp" type="search" placeholder="Search destinations..." />
+
                     <button class="btn search-btn" type="submit">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                     Search</button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search
+                </button>
+
                 </form>
+
             </div>
 
 
+            <!-- Right Navigation -->
+            <div class="navbar-nav ms-auto d-flex flex-row gap-2 wl-right-nav">
 
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
-                <a class="nav-link" href="/listings/new">Wonderlust your home</a>
-                <% if(!curruser) {%>
-                    <a class="nav-link" href="/signup"><b>Signup</b></a>
-                    <a class="nav-link" href="/login"><b>Login</b></a>
-                    <%}%>
-                        <% if(curruser) {%>
-                            <a class="nav-link" href="/logout"><b>Log out</b></a>
-                            <%}%>
+                <a class="nav-link wl-home-link" href="/listings/new">
+                Wonderlust your home
+            </a>
+
+
+                <% if(!curruser) { %>
+
+                    <a class="nav-link wl-signup" href="/signup">
+                        <b>Signup</b>
+                    </a>
+
+                    <a class="nav-link wl-login" href="/login">
+                        <b>Login</b>
+                    </a>
+
+                    <% } %>
+
+
+                        <% if(curruser) { %>
+
+                            <a class="nav-link wl-logout" href="/logout">
+                                <b>Log out</b>
+                            </a>
+
+                            <% } %>
+
             </div>
+
         </div>
+
     </div>
+
+
 </nav>
